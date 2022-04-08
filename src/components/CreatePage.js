@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { create } from "ipfs-http-client";
 // import { Buffer } from "buffer";
-// import pinataSdk from "@pinata/sdk";
+import pinataSdk from "@pinata/sdk";
 
 function CreatePage() {
   // const pinata = pinataSDK(
