@@ -1,0 +1,467 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+}
+
+.mainHeadingBody {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600 !important;
+  font-size: 45px;
+  text-align: left;
+  max-width: 100%;
+  margin-right: 10px;
+  line-height: 110%;
+}
+
+.heading2Body {
+  font-weight: 400 !important;
+  font-size: 24px;
+  text-align: left;
+  margin-top: 20px;
+  max-width: 400px;
+  color: rgb(53, 56, 64);
+  line-height: 1.5;
+}
+
+.backgroundContainer {
+  background-image: url("../src/img/background-image.jpg");
+  background-size: cover;
+  /* -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px); */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.row,
+.col {
+  padding: 0;
+  margin: 0;
+}
+
+.dropInNav {
+  position: absolute;
+  left: auto;
+  right: 0;
+  border-radius: 0.5rem;
+}
+
+.icon {
+  height: 27px;
+  width: 27px;
+}
+
+/* .iconBorder {
+  border: none;
+} */
+.btn:hover {
+  background-color: rgb(231, 234, 240);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.cardRow {
+  margin-right: 0px;
+  margin-left: 0px;
+  display: flex;
+  justify-content: start;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(15, 15, 15);
+  color: white;
+  text-align: center;
+  height: 5vh;
+}
+
+.exploreHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 70px;
+  margin-bottom: 70px; */
+  font-weight: 600;
+}
+
+.exploreButton {
+  width: 25%;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+}
+
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 1.1rem;
+}
+
+.tab-list-active {
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.card-img-top {
+  height: 50%;
+}
+
+.imgRow {
+  margin-bottom: 50px;
+}
+
+.cardHeading {
+  display: flex;
+  justify-content: center;
+}
+
+.imageCard {
+  border-radius: 10px !important;
+  box-shadow: rgba(4, 17, 29, 0.25) 0px 0px 10px 0px;
+  height: 100%;
+}
+
+.cardOfImage {
+  width: 100%;
+}
+
+.filterLabelRating {
+  margin-left: 8px;
+}
+
+/* .filterInternalRow {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+} */
+.filterInternalCol {
+  margin: 0;
+  padding: 0;
+}
+
+.inputCol {
+  width: 30%;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+
+.inputCol2 {
+  width: 30%;
+  margin-left: 10px;
+  border-radius: 7px;
+}
+
+.priceText {
+  padding-bottom: 25px;
+}
+
+.nftsRowInExplore {
+  display: -webkit-box;
+}
+
+/* .nftsHeadColExplore {
+  padding: 0;
+  margin-bottom: 50px;
+} */
+.NFtCardExplore {
+  border-radius: 0.5rem;
+  margin: 10px;
+}
+
+.NFtCardBodyExplore {
+  padding: 0.5rem;
+}
+
+/* .filterCol {
+  padding: 0;
+} */
+.filterHeading {
+  width: 100%;
+  background-color: white;
+  border: none;
+  color: black;
+  font-size: 20px;
+}
+
+.filterAccordion {
+  height: 100%;
+}
+
+/* .filterDropdown {
+  padding-left: 15px;
+} */
+.internalFilterRow {
+  display: -webkit-box;
+}
+
+.navAttributes {
+  display: flex;
+  justify-content: center;
+}
+
+.navlinkColor {
+  color: rgb(112, 122, 131);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.navbrand {
+  font-weight: 600;
+}
+
+.createButton {
+  width: 25%;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  background-color: white;
+}
+
+.TablistItem {
+  border: none;
+  font-weight: 600;
+  color: rgb(112, 122, 131);
+  font-size: 16px;
+  padding: 12px 20px;
+}
+
+.tab-list-active {
+  border-bottom: 3px solid blue;
+  color: grey;
+}
+
+.a:not([href]):not([tabindex]) {
+  color: rgb(112, 122, 131);
+  text-decoration: none;
+}
+
+.NavIconButton {
+  background: none;
+}
+
+.profileCard {
+  width: 100%;
+}
+
+.headingRow {
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.TabsRow {
+  justify-content: center;
+}
+
+.imageCardProfile {
+  background-color: rgb(229, 232, 235);
+  height: 225px;
+}
+
+.AddressProfile {
+  padding: 4px 8px;
+  border: 1px solid rgb(229, 232, 235);
+  border-radius: 16px;
+  color: rgb(112, 122, 131);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.TabsProfile {
+  margin-top: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.nameProfile {
+  font-size: 30px;
+  font-weight: 600;
+  min-height: 40px;
+}
+
+.contentRowProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardBodyProfile {
+  padding: 0;
+}
+
+.profileImageRow {
+  justify-content: center;
+}
+
+.profileImage {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  margin-top: -64px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+.inputInProfile {
+  width: 25%;
+  height: 50px;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(229, 232, 235);
+}
+
+.profileCollected {
+  width: 100%;
+  border: 1px solid rgb(229, 232, 235);
+  border-radius: 10px;
+  margin: 15px;
+  padding: 15px;
+  height: 248px;
+  align-items: center;
+}
+
+::-webkit-profilecollected-placeholder {
+  text-align: center;
+}
+
+.profileCollectedRow {
+  margin-bottom: 25px;
+}
+
+.TabsProfile {
+  border-bottom: 1px solid rgb(229, 232, 235);
+  margin-top: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.nav-tabs .nav-link.active {
+  color: black;
+  background-color: none;
+  border-bottom: 3px solid blue;
+}
+
+.navItemProfile {
+  width: 100%;
+  padding: 20px;
+  color: rgb(112, 122, 131);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.Iconinprofile {
+  margin-right: 16px;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+}
+
+.spanUnderProfile {
+  margin-left: 12px;
+}
+
+.dropdownMenuprofile {
+  min-width: 220x;
+  max-height: 350px;
+  max-width: 350px;
+}
+
+.notConnectedRow {
+  display: grid;
+  justify-content: center;
+}
+
+.alert {
+  margin-bottom: 0 !important;
+}
+
+.createPageRow1 {
+  display: grid;
+  justify-content: center;
+}
+
+.createPageRow2 {
+  display: grid;
+}
+
+.createInputBox {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid rgb(229, 232, 235);
+  height: 48px;
+  width: 70%;
+  padding-left: 12px;
+}
+
+.freezeLabel {
+  border: 1px solid rgb(229, 232, 235);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 16px;
+  background-color: rgb(251, 253, 255);
+}
+
+.spanText {
+  font-size: 12px;
+}
+
+.imageIcon {
+  color: rgb(204, 204, 204);
+  font-size: 84px;
+}
+
+.imageInputBox {
+  position: relative;
+  padding: 4px;
+  border: 3px rgb(204, 204, 204) dashed;
+  border-radius: 10px;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  height: 257px;
+  width: 350px;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageInputBox:hover {
+  background-color: rgb(204, 204, 204);
+}
+
+.bi-images {
+  color: rgb(233, 227, 227);
+  font-size: 84px;
+}
+
+.modalContent {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgb(112, 122, 131);
+}
+.createButtonMint:disabled {
+  opacity: 0.2;
+}

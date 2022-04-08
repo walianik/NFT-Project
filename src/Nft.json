@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Nft1",
+    "tokenId": "Nft1tokenId",
+    "blockchain": "ethereum",
+    "rating": 5,
+    "price": 1,
+    "image": "https://images.unsplash.com/photo-1646635142090-f535f5977655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+  },
+  {
+    "name": "Nft2",
+    "tokenId": "Nft2tokenId",
+    "blockchain": "ethereum",
+    "rating": 4,
+    "price": 0.5,
+    "image": "https://images.unsplash.com/photo-1646635142090-f535f5977655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+  },
+  {
+    "name": "Nft3",
+    "tokenId": "Nft3tokenId",
+    "blockchain": "ethereum",
+    "rating": 3.9,
+    "price": 0.6,
+    "image": "https://images.unsplash.com/photo-1646634426203-410dd8aff2dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
+  },
+  {
+    "name": "Nft4",
+    "tokenId": "Nft4tokenId",
+    "blockchain": "ethereum",
+    "rating": 3.5,
+    "price": 0.8,
+    "image": "https://images.unsplash.com/photo-1646608218802-e8ed9974489a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"
+  },
+  {
+    "name": "Nft5",
+    "tokenId": "Nft5tokenId",
+    "blockchain": "ethereum",
+    "rating": 5,
+    "price": 0.7,
+    "image": "https://images.unsplash.com/photo-1646596504587-c3771cf62e81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+  },
+  {
+    "name": "Nft6",
+    "tokenId": "Nft6tokenId",
+    "blockchain": "ethereum",
+    "rating": 3.8,
+    "price": 0.4,
+    "image": "https://images.unsplash.com/photo-1646617747555-5b6845788cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+  },
+  {
+    "name": "Nft7",
+    "tokenId": "Nft7tokenId",
+    "blockchain": "ethereum",
+    "rating": 3.4,
+    "price": 0.2,
+    "image": "https://images.unsplash.com/photo-1646617747555-5b6845788cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+  }
+]
