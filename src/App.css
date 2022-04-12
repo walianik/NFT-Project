@@ -247,10 +247,12 @@
   font-size: 16px;
   padding: 12px 20px;
 }
-
 .tab-list-active {
   border-bottom: 3px solid blue;
   color: grey;
+}
+mode:dark ~ .tab-list-active{
+  color:white
 }
 
 .a:not([href]):not([tabindex]) {
@@ -360,9 +362,12 @@
 
 .nav-tabs .nav-link.active {
   color: black;
-  background-color: none;
+  background-color: none !important;
   border-bottom: 3px solid blue;
 }
+/* mode:dark ~.nav-tabs .nav-link.active{
+  color:white
+} */
 
 .navItemProfile {
   width: 100%;
@@ -389,16 +394,13 @@
   max-height: 350px;
   max-width: 350px;
 }
-
 .notConnectedRow {
   display: grid;
   justify-content: center;
 }
-
 .alert {
   margin-bottom: 0 !important;
 }
-
 .createPageRow1 {
   display: grid;
   justify-content: center;

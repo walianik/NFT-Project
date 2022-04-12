@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+// import Tippy from "@tippyjs/react";
+// import "tippy.js/dist/tippy.css";
 import nft from "../Nft.json";
 export default function Profile(props) {
   const [addressBox, setAddressBox] = useState("Copy");
+  var array1 = nft;
+  const [array2, setArray2] = useState(array1);
+  const [value1, setValue1] = useState("");
+  const [value2, setValue2] = useState("");
+  const [value, setValue] = useState(false);
   const Address = localStorage.getItem("address");
   var d = Date(Date.now());
   d.toString();
@@ -18,11 +23,6 @@ export default function Profile(props) {
     setAddressBox("Copied");
   };
   //Filter
-  var array1 = nft;
-  const [array2, setArray2] = useState(array1);
-  const [value1, setValue1] = useState("");
-  const [value2, setValue2] = useState("");
-  const [value, setValue] = useState(false);
   const sort = (data) => {
     var array = data.filter(function (item) {
       return item.rating > 4;
@@ -88,7 +88,7 @@ export default function Profile(props) {
                 </div>
               </div>
               <div className="row headingRow">
-                <Tippy content={addressBox}>
+                {/* <Tippy content={addressBox}>
                   <div
                     className="AddressProfile"
                     id="addressBox"
@@ -96,7 +96,7 @@ export default function Profile(props) {
                   >
                     {address}
                   </div>
-                </Tippy>
+                </Tippy> */}
               </div>
               <div className="row headingRow">
                 <h4

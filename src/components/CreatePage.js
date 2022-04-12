@@ -1,63 +1,42 @@
 import React, { useState } from "react";
 import { create } from "ipfs-http-client";
-// import { Buffer } from "buffer";
-import pinataSdk from "@pinata/sdk";
-
+import { Buffer } from "buffer";
+import axios from "axios";
 function CreatePage() {
-  // const pinata = pinataSDK(
-  //   "68b73857e9de363c57bf",
-  //   "cdc86d9ac133faff9ddfa2efc4bfe262885935b3127f2596d6e27a25c659cae1"
-  // );
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [name, setName] = useState("");
   const [externalLink, setExternalLink] = useState("");
   const [description, setDescription] = useState("");
-  const [fileUrl, setFileUrl] = useState("https://ipfs.io/ipfs/");
-  const [hash, setHash] = useState("");
+  var [dataHash, setDataHash] = useState("");
   const [buffer, setBuffer] = useState(null);
-  // const pinata=
   const client = create({
     host: "ipfs.infura.io",
     port: 5001,
     protocol: "https",
   });
   var createNft = async () => {
-    // let nftData = new Array();
-    // console.log("dddfff");
-    // nftData = JSON.parse(localStorage.getItem("data"))
-    //   ? JSON.parse(localStorage.getItem("data"))
-    //   : [];
-    // nftData.push({
-    //   name: name,
-    //   description: description,
-    //   image: image,
-    //   externalLink: externalLink,
-    // });
-    // console.log(nftData);
-    // console.log("hiii");
-    // localStorage.setItem("data", nftData);
-
-    //uploading image on ipfs
-    const added = await client.add(buffer);
-    const newHash = added.path;
-    setHash(newHash);
-    console.log("bhbh", hash);
-    setFileUrl(fileUrl + hash);
-    console.log(fileUrl);
-
-    ////making nft json object
+    //uploading image
+    const addedImg = await client.add(buffer);
+    const imgHash = addedImg.path;
+    //making nft json object
     var nft = {
       nftName: name,
       Description: description,
       externalLink: externalLink,
-      image: hash,
+      image: "https://ipfs.io/ipfs/" + imgHash,
     };
-    console.log(nft);
-    // const resp = await pinata.pinFileToIPFS(nft);
-    // console.log("daata", resp.IpfsHash);
-    // return resp.IpfsHash;
+    // const regex = new RegExp(
+    //   "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"
+    // );
+    const NFt = JSON.stringify(nft);
+    //uploading Nft on ipfs
+    const added = await client.add(NFt);
+    const dataHash = added.path;
+    setDataHash(dataHash);
+    console.log("data hash", dataHash);
+    const dataUrl = "https://ipfs.io/ipfs/" + dataHash;
+    console.log("data url", dataUrl);
   };
-
   return (
     <>
       <div className="row createPageRow1 my-2">
@@ -88,7 +67,6 @@ function CreatePage() {
                 onChange={async (e) => {
                   e.preventDefault();
                   if (e.target.files.length) {
-                    console.log("hi");
                     setImage({
                       preview: URL.createObjectURL(e.target.files[0]),
                       raw: e.target.files[0],
@@ -99,6 +77,7 @@ function CreatePage() {
                     reader.onloadend = () => {
                       setBuffer(reader.result);
                     };
+                    console.log(Buffer(setBuffer));
                   }
                 }}
               />
@@ -124,6 +103,10 @@ function CreatePage() {
             </span>
             <input
               className=" my-2 createInputBox"
+              id="externalLink"
+              name="extenalLink"
+              type="url"
+              placeholder="https://yoursite.io/item/"
               value={externalLink}
               onChange={(e) => {
                 setExternalLink(e.target.value);
@@ -224,5 +207,4 @@ function CreatePage() {
     </>
   );
 }
-
 export default CreatePage;

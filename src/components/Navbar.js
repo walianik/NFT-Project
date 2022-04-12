@@ -333,7 +333,7 @@ const Navbar = (props) => {
                   className={`nav-link navlinkColor px-3 text-${
                     props.mode === "dark" ? "light" : "dark"
                   }`}
-                  to="/MintingPage"
+                  to="/CreatePage"
                 >
                   Create
                 </Link>

@@ -139,7 +139,7 @@ function MintingPage(props) {
           Mint
         </button>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   );
 }
