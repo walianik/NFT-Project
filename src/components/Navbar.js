@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
-
 const Navbar = (props) => {
   const [currentAccount, setCurrentAccount] = useState(null);
   const value = localStorage.getItem("address");

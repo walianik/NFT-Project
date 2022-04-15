@@ -11,6 +11,7 @@ import FilteredPage from "./components/FilteredPage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreatePage from "./components/CreatePage";
+import axios from "axios";
 function App() {
   const [mode, setMode] = useState("light");
   const [darkModebtn, setdarkModebtn] = useState("Enable night mode");
@@ -44,6 +45,19 @@ function App() {
           toast.success("Wallet is Connected", {
             position: "top-center",
           });
+          const data = { address: value };
+          axios
+            .post("http://localhost:5000/v1/auth/login", data)
+            .then((result) => {
+              console.log("submit", result);
+              var id = result.data.user.id;
+              var token = result.data.tokens.access.token;
+              localStorage.setItem("addressId", id);
+              localStorage.setItem("auth-token", token);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
         } catch (err) {
           toast.error("user denied connection", {
             position: "top-center",

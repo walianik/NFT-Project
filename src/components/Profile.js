@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import Tippy from "@tippyjs/react";
 // import "tippy.js/dist/tippy.css";
 import nft from "../Nft.json";
+import icon from "../img/metamask.svg";
 export default function Profile(props) {
   const [addressBox, setAddressBox] = useState("Copy");
   var array1 = nft;
