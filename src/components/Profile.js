@@ -3,14 +3,19 @@ import React, { useState } from "react";
 // import "tippy.js/dist/tippy.css";
 import nft from "../Nft.json";
 import icon from "../img/metamask.svg";
+import axios from "axios";
+import { useEffect } from "react";
 export default function Profile(props) {
   const [addressBox, setAddressBox] = useState("Copy");
-  var array1 = nft;
-  const [array2, setArray2] = useState(array1);
+  const [data, setData] = useState([]);
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
   const [value, setValue] = useState(false);
+  var array1 = nft;
+  const [array2, setArray2] = useState(array1);
   const Address = localStorage.getItem("address");
+  const accessToken = localStorage.getItem("auth-token");
+  const apiUrl = "localhost:5000/v1/";
   var d = Date(Date.now());
   d.toString();
   if (Address !== null) {
@@ -19,6 +24,25 @@ export default function Profile(props) {
         Address.substring(0, 6) + "...." + Address.substring(37, 42);
     }
   }
+  const authAxios = axios.create({
+    baseURL: apiUrl,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  useEffect(() => {
+    authAxios
+      .get("http://localhost:5000/v1/nft")
+      .then((res) => {
+        console.log(res);
+        let resultData = res.data.results;
+        console.log(resultData);
+        setData(resultData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const copyAddress = async () => {
     await navigator.clipboard.writeText(Address);
     setAddressBox("Copied");
@@ -89,15 +113,13 @@ export default function Profile(props) {
                 </div>
               </div>
               <div className="row headingRow">
-                {/* <Tippy content={addressBox}>
-                  <div
-                    className="AddressProfile"
-                    id="addressBox"
-                    onClick={copyAddress}
-                  >
-                    {address}
-                  </div>
-                </Tippy> */}
+                <div
+                  className="AddressProfile"
+                  id="addressBox"
+                  onClick={copyAddress}
+                >
+                  {address}
+                </div>
               </div>
               <div className="row headingRow">
                 <h4
@@ -282,11 +304,37 @@ export default function Profile(props) {
                           placeholder="Recently Recieved"
                         />
                       </div>
-                      <div className="row profileCollectedRow">
-                        <input
-                          className="profileCollected "
-                          placeholder="No Items to display"
-                        />
+                      <div className="row my-5">
+                        {data.map((element, tokenId) => {
+                          return (
+                            <div className="col-md-4" key={tokenId}>
+                              <div
+                                className="card NFtCardExplore"
+                                //style={{ width: "18rem" }}
+                              >
+                                <img
+                                  className="card-img-top"
+                                  src={element.img}
+                                  alt="No nft"
+                                />
+                                <div className="card-body NFtCardBodyExplore">
+                                  <h3 className="card-title">
+                                    Name:{element.nftame}
+                                  </h3>
+                                  <h6 className="card-text">
+                                    TokenId:{element.tokenId}
+                                  </h6>
+                                  <p className="card-text">
+                                    Rating:{element.rating}
+                                  </p>
+                                  <p className="card-text priceText">
+                                    Price:{element.price}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -365,10 +413,10 @@ export default function Profile(props) {
                         />
                       </div>
                       <div className="row profileCollectedRow">
-                        <input
+                        <div
                           className="profileCollected"
                           placeholder="No Items to display"
-                        />
+                        ></div>
                       </div>
                     </div>
                   </div>

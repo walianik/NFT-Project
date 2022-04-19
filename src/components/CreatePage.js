@@ -10,6 +10,24 @@ function CreatePage(props) {
   var [dataHash, setDataHash] = useState("");
   const [buffer, setBuffer] = useState(null);
   const Address = localStorage.getItem("address");
+  const accessToken = localStorage.getItem("auth-token");
+  const apiUrl = "localhost:5000/v1/";
+  // to give permission globally
+  // axios.interceptors.request.use(
+  //   (config) => {
+  //     config.headers.authorization = `Bearer ${accessToken}`;
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
+  const authAxios = axios.create({
+    baseURL: apiUrl,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
   // var error = {};
   const client = create({
     host: "ipfs.infura.io",
@@ -36,9 +54,14 @@ function CreatePage(props) {
     const dataUrl = "https://ipfs.io/ipfs/" + dataHash;
     console.log("data url", dataUrl);
     // console.log(externalLink);
-    const authToken = localStorage.getItem("auth-token");
-    axios
-      .post("http://localhost:5000/v1/nft", NFt)
+
+    const data = {
+      nftName: name,
+      tokenId: 55555,
+      img: "https://ipfs.io/ipfs/" + imgHash,
+    };
+    authAxios
+      .post("http://localhost:5000/v1/nft", data)
       .then((result) => {
         console.log("submit", result);
         //  var id = result.data.user.id;
@@ -67,7 +90,7 @@ function CreatePage(props) {
     if (Address !== null) {
       return (
         <>
-          <div className="row createPageRow1 my-2">
+          <div className=" createPageRow1 my-2">
             <div className="container">
               <h1 className="my-4">Create New Item</h1>
               <div>
@@ -147,7 +170,6 @@ function CreatePage(props) {
                 />
               </div>
               {/* <p>{errstatus}</p> */}
-
               <div className="row createPageRow2 my-1">
                 <label>Description</label>
                 <span className="spanText">
@@ -192,50 +214,50 @@ function CreatePage(props) {
                   storage.
                 </span>
               </div>
-              <label className="freezeLabel my-1">
+              <div className="freezeLabel my-1 ">
                 To freeze your metadata, you must create your item first.
-              </label>
-            </div>
-            <hr />
-            <div className="row mb-3">
-              <button
-                type="button"
-                className="btn btn-primary mb-5 mt-3 mx-2 createButtonMint"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                onClick={createNft}
-                disabled={!name || !image}
-              >
-                Create
-              </button>
-              <div
-                className="modal fade"
-                id="exampleModal"
-                tabIndex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLabel">
-                        You created {name}!
-                      </h5>
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <p className="modalContent">
-                        woot! you just created {name}.
-                      </p>
-                      <img src={image.preview} width="200" height="200" />
+              </div>
+              <hr />
+              <div className="row mb-3">
+                <button
+                  type="button"
+                  className="btn btn-primary mb-5 mt-3 mx-2 createButtonMint"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  onClick={createNft}
+                  disabled={!name || !image}
+                >
+                  Create
+                </button>
+                <div
+                  className="modal fade"
+                  id="exampleModal"
+                  tabIndex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                          You created {name}!
+                        </h5>
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">
+                        <p className="modalContent">
+                          woot! you just created {name}.
+                        </p>
+                        <img src={image.preview} width="200" height="200" />
+                      </div>
                     </div>
                   </div>
                 </div>

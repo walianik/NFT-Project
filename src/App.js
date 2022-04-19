@@ -8,8 +8,7 @@ import MintingPage from "./components/MintingPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Explore from "./components/Explore";
 import FilteredPage from "./components/FilteredPage";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 import CreatePage from "./components/CreatePage";
 import axios from "axios";
 function App() {
@@ -52,6 +51,7 @@ function App() {
               console.log("submit", result);
               var id = result.data.user.id;
               var token = result.data.tokens.access.token;
+              console.log("token", token);
               localStorage.setItem("addressId", id);
               localStorage.setItem("auth-token", token);
             })
@@ -79,7 +79,7 @@ function App() {
           darkModebtn={darkModebtn}
           connectWalletHandler={connectWalletHandler}
         />
-        {/* <CreatePage /> */}
+        <Toaster />
         <Routes>
           <Route path="/" element={<Body mode={mode} />}></Route>
           <Route
