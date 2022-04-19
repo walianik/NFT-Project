@@ -143,9 +143,10 @@ function CreatePage(props) {
                 <label>Name</label>
                 <input
                   className=" my-2 createInputBox"
-                  placeholder="Item name"
+                  //placeholder="Item name"
                   value={name}
                   onChange={(e) => {
+                    console.log(e.target.value);
                     setName(e.target.value);
                   }}
                 />

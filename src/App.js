@@ -5,6 +5,7 @@ import Body from "./components/Body";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import MintingPage from "./components/MintingPage";
+import Nft from "./components/Nft";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Explore from "./components/Explore";
 import FilteredPage from "./components/FilteredPage";
@@ -100,6 +101,7 @@ function App() {
             }
           ></Route>
           <Route path="/Explore" element={<Explore mode={mode} />}></Route>
+          <Route path="/Nft" element={<Nft mode={mode} />}></Route>
           <Route
             path="/FilteredPage"
             element={<FilteredPage mode={mode} />}

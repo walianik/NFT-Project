@@ -468,6 +468,239 @@ mode:dark ~ .tab-list-active{
 .createButtonMint:disabled {
   opacity: 0.2;
 }
-.connectToMetaMaskButton{
-  
+.topRowNFt{
+      position: sticky;
+      top: 72px;
+      height: 70px;
+      width: 100%;
+      right: 0px;
+      padding: 10px 20px;
+      z-index: 60;
+      background-color: rgb(251, 253, 255);
+      border-bottom: 1px solid rgb(229, 232, 235);
+      display: flex;
+      justify-content: flex-end;
+}
+.editNFt{
+  margin-right: 10px;
+  display: inline-flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 10px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(32, 129, 226);
+  color: rgb(32, 129, 226);
+  width: 162px;
+}
+.sellNFt{
+  display: inline-flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 10px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  background-color: rgb(32, 129, 226);
+  border: 1px solid rgb(32, 129, 226);
+  color: rgb(255, 255, 255);
+  width: 162px;
+}
+.itemContainer{
+  padding-left: 0;
+  padding-right: 0;
+  width: 1280px;
+}
+.summaryCol{
+  flex: 3 0 0%;
+  max-width: 43%;
+  width: 0px;
+}
+.mainCol{
+flex: 4 0 0%;
+margin-left: -20px;
+}
+.articleNftImage{
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid rgb(229, 232, 235);
+  overflow: hidden;
+}
+.articleHead{
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  padding: 12px;
+  height: 42px;
+  width: 100%;
+  background: rgb(255, 255, 255);
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+}
+.articleBody{
+  cursor: pointer;
+  max-height: 1000px;
+  width: 100%;
+  min-height: 200px;
+  height: 100%;
+  position: relative;
+  border-radius: inherit;
+}
+.imgDiv{
+      height: 100%;
+      width: 600px;
+      -webkit-box-align: center;
+      align-items: center;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      max-height: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+      border-radius: 10px;
+}
+.rowMainHeader{
+      margin: 20px 20px 15px;
+      display: flex;
+      flex-flow: column wrap;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+}
+.btnDots{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.ownedText{
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 24px;
+  width: 100%;
+}
+.ownedByHeading{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.itemCounts{
+  margin: 20px;
+}
+.itemInfo{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  max-width: 100%;
+}
+.itemCollectionDetail{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  max-width: 100%;
+  width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mainHeadingNft{
+  font-size: 16px;
+  text-decoration: none;
+}
+.toolbarWrapper{
+  width: fit-content;
+}
+.buttonTool{
+  padding: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  background-color: white;
+  border: 1px solid rgb(229, 232, 235);
+  color: rgb(112, 122, 131);
+}
+.anchorTool{
+      display: inline-flex;
+      flex-direction: row;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 10px;
+      -webkit-box-pack: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 10px;
+      border-left: none;
+      border-radius: 0;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(229, 232, 235);
+      color: rgb(112, 122, 131);
+}
+.btnArrow{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.itemFrameDrop{
+      margin: 20px;
+}
+.accordionHeaderNft{
+  border: 1px solid rgb(229, 232, 235);
+  border-radius: 10px;
+}
+.accordionBtnNFt{
+      margin-bottom: 2px;
+      width: 100%;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 10px;
+      border-top: 1px solid rgb(229, 232, 235);
+      cursor: pointer;
+      display: flex;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 20px;
+      user-select: none;
+      background-color: rgb(255, 255, 255);
+}
+.itemDropNft{
+  border-radius: 10px;
+  border-right: 1px solid rgb(229, 232, 235) !important;
+  border-bottom: 1px solid rgb(229, 232, 235) !important;
+  border-left: 1px solid rgb(229, 232, 235) !important;
+  border-image: initial;
+  border-top: none;
+  color: rgb(4, 17, 29);
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+}
+.bodyAccNft{
+      border-top: 1px solid rgb(229, 232, 235);
+      color: rgb(53, 56, 64);
+      background-color: rgb(251, 253, 255);
+}
+.bodydrop1AccNft{
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.timeDropNFt{
+  display: flex;
+  flex-wrap: wrap;
+}
+.btnDropTimeNFt{
+  background-color: white;
+  color: black;
+}
+.btnDropTimeNFt:hover{
+background-color: white;
+color: black;
 }

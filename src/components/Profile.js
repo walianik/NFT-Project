@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import Tippy from "@tippyjs/react";
 // import "tippy.js/dist/tippy.css";
 import nft from "../Nft.json";
@@ -6,7 +7,9 @@ import icon from "../img/metamask.svg";
 import axios from "axios";
 import { useEffect } from "react";
 export default function Profile(props) {
+  let navigate = useNavigate();
   const [addressBox, setAddressBox] = useState("Copy");
+  const [collectedCount, setCollectedCount] = useState(0);
   const [data, setData] = useState([]);
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
@@ -85,6 +88,9 @@ export default function Profile(props) {
     }
     setArray2(tempData);
   };
+  useEffect(() => {
+    setCollectedCount(data.length);
+  });
   const Call = () => {
     if (Address !== null) {
       return (
@@ -139,7 +145,7 @@ export default function Profile(props) {
                   >
                     <i className="bi bi-file-earmark-plus Iconinprofile"></i>
                     Collected
-                    <span className="spanUnderProfile">0</span>
+                    <span className="spanUnderProfile">{collectedCount}</span>
                   </a>
                 </li>
                 <li className="nav-item">
@@ -310,6 +316,14 @@ export default function Profile(props) {
                             <div className="col-md-4" key={tokenId}>
                               <div
                                 className="card NFtCardExplore"
+                                onClick={() => {
+                                  navigate("/Nft", {
+                                    state: {
+                                      img: element.img,
+                                      name: element.nftName,
+                                    },
+                                  });
+                                }}
                                 //style={{ width: "18rem" }}
                               >
                                 <img
@@ -319,7 +333,7 @@ export default function Profile(props) {
                                 />
                                 <div className="card-body NFtCardBodyExplore">
                                   <h3 className="card-title">
-                                    Name:{element.nftame}
+                                    Name:{element.nftName}
                                   </h3>
                                   <h6 className="card-text">
                                     TokenId:{element.tokenId}
