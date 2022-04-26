@@ -19,14 +19,11 @@ export default function Explore(props) {
       >
         <Tabs className="tabs ">
           <div label="Trending">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
-                    <div
-                      className="card NFtCardExplore"
-                      //style={{ width: "18rem" }}
-                    >
+                    <div className="card NFtCardExplore">
                       <img
                         className="card-img-top"
                         src={element.image}
@@ -47,7 +44,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Top">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -75,7 +72,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Art">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -103,7 +100,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Collectibles">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -131,7 +128,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Domain Names">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -159,7 +156,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Music">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -187,7 +184,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Photography">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -215,7 +212,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Sports">
-            <div className="row nftsRowInExplore">
+            <div className="row">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -243,7 +240,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Trading Cards">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -271,7 +268,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Utility">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>
@@ -299,7 +296,7 @@ export default function Explore(props) {
             </div>
           </div>
           <div label="Virtual Words">
-            <div className="row nftsRowInExplore">
+            <div className="row ">
               {array2.map((element, tokenId) => {
                 return (
                   <div className="col-md-4" key={tokenId}>

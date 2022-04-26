@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import Tippy from "@tippyjs/react";
 // import "tippy.js/dist/tippy.css";
 import nft from "../Nft.json";
-import icon from "../img/metamask.svg";
+import Spinner from "./Spinner";
 import axios from "axios";
 import { useEffect } from "react";
 export default function Profile(props) {
@@ -14,6 +14,7 @@ export default function Profile(props) {
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
   const [value, setValue] = useState(false);
+  const [loading, setLoading] = useState(false);
   var array1 = nft;
   const [array2, setArray2] = useState(array1);
   const Address = localStorage.getItem("address");
@@ -37,10 +38,11 @@ export default function Profile(props) {
     authAxios
       .get("http://localhost:5000/v1/nft")
       .then((res) => {
-        console.log(res);
+        setLoading(true);
         let resultData = res.data.results;
-        console.log(resultData);
+        console.log("data got in profile", resultData);
         setData(resultData);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -73,8 +75,10 @@ export default function Profile(props) {
   };
   const checkValue = async () => {
     if (value === true || value === "on") {
+      console.log("in if");
       setValue(false);
     } else if (value === false || value === "off") {
+      console.log("in else if");
       setValue(true);
     }
   };
@@ -92,6 +96,7 @@ export default function Profile(props) {
     setCollectedCount(data.length);
   });
   const Call = () => {
+    console.log("got", Address);
     if (Address !== null) {
       return (
         <div
@@ -99,6 +104,7 @@ export default function Profile(props) {
             props.mode === "light" ? "light" : "dark"
           }`}
         >
+          {loading && <Spinner />}
           <div className="card-img-top imageCardProfile" alt="Card image cap" />
           <div className="card-body cardBodyProfile">
             <div className="row profileImageRow">
@@ -261,8 +267,8 @@ export default function Profile(props) {
                           <div className="row internalFilterRow">
                             <input
                               type="checkbox"
-                              value={value}
-                              onChange={checkValue}
+                              // value={value}
+                              // onClick={checkValue}
                             />
                             <label
                               className="form-check-label filterLabelRating"
@@ -313,18 +319,23 @@ export default function Profile(props) {
                       <div className="row my-5">
                         {data.map((element, tokenId) => {
                           return (
-                            <div className="col-md-4" key={tokenId}>
+                            <div
+                              className="col-md-4 nftColProfile"
+                              key={tokenId}
+                            >
                               <div
-                                className="card NFtCardExplore"
+                                className="card NFtCardProfile m-2"
                                 onClick={() => {
                                   navigate("/Nft", {
                                     state: {
                                       img: element.img,
                                       name: element.nftName,
+                                      description: element.description,
+                                      nftId: element.id,
                                     },
                                   });
+                                  console.log(element);
                                 }}
-                                //style={{ width: "18rem" }}
                               >
                                 <img
                                   className="card-img-top"
@@ -336,14 +347,8 @@ export default function Profile(props) {
                                     Name:{element.nftName}
                                   </h3>
                                   <h6 className="card-text">
-                                    TokenId:{element.tokenId}
+                                    description:{element.description}
                                   </h6>
-                                  <p className="card-text">
-                                    Rating:{element.rating}
-                                  </p>
-                                  <p className="card-text priceText">
-                                    Price:{element.price}
-                                  </p>
                                 </div>
                               </div>
                             </div>

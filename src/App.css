@@ -176,11 +176,6 @@
 .priceText {
   padding-bottom: 25px;
 }
-
-.nftsRowInExplore {
-  display: -webkit-box;
-}
-
 /* .nftsHeadColExplore {
   padding: 0;
   margin-bottom: 50px;
@@ -189,11 +184,19 @@
   border-radius: 0.5rem;
   margin: 10px;
 }
-
 .NFtCardBodyExplore {
   padding: 0.5rem;
 }
-
+.NFtCardProfile{
+  border-radius: 0.5rem;
+  margin: 10px;
+  height: 294px;
+  width: 294px;
+}
+.nftColProfile{
+  padding-right: 0;
+  padding-left: 0;
+}
 /* .filterCol {
   padding: 0;
 } */
@@ -226,7 +229,10 @@
   font-weight: 600;
   font-size: 18px;
 }
-
+/* .navbar{
+  position: sticky;
+  top: 0;
+} */
 .navbrand {
   font-weight: 600;
 }
@@ -360,9 +366,9 @@ mode:dark ~ .tab-list-active{
   padding-right: 0px;
 }
 
-.nav-tabs .nav-link.active {
+.nav-tabs .nav-item .nav-link.active {
   color: black;
-  background-color: none !important;
+  background-color: inherit;
   border-bottom: 3px solid blue;
 }
 /* mode:dark ~.nav-tabs .nav-link.active{
@@ -384,11 +390,13 @@ mode:dark ~ .tab-list-active{
 .nav-tabs .nav-link {
   border: none;
 }
-
 .spanUnderProfile {
   margin-left: 12px;
 }
-
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; 
+}
 .dropdownMenuprofile {
   min-width: 220x;
   max-height: 350px;
@@ -402,10 +410,13 @@ mode:dark ~ .tab-list-active{
   margin-bottom: 0 !important;
 }
 .createPageRow1 {
-  display: grid;
-  justify-content: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
 }
-
 .createPageRow2 {
   display: grid;
 }
@@ -447,10 +458,49 @@ mode:dark ~ .tab-list-active{
   -webkit-box-pack: center;
   height: 257px;
   width: 350px;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  display: flex;
 }
-
+.crossIcon{
+  position: absolute;
+  z-index: 71;
+  right: 12px;
+  top: 12px;
+}
+.crossIconBtn{
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  font-size: 100%;
+  font-family: inherit;
+  border: 0px;
+  padding: 0px;
+  background: inherit;
+  appearance: button;
+  cursor: pointer;
+}
+.crossIconIcon{
+      color: rgb(204, 204, 204);
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+          text-rendering: optimizelegibility;
+          font-feature-settings: "liga" !important;
+          font-size: 24px !important;
+}
 .imageInputBox:hover {
   background-color: rgb(204, 204, 204);
 }
@@ -469,7 +519,7 @@ mode:dark ~ .tab-list-active{
   opacity: 0.2;
 }
 .topRowNFt{
-      position: sticky;
+      position: inherit;
       top: 72px;
       height: 70px;
       width: 100%;
@@ -652,55 +702,600 @@ margin-left: -20px;
 .itemFrameDrop{
       margin: 20px;
 }
-.accordionHeaderNft{
+.dropBtnNFt{
+  background-color: white;
+  color: black;
+  margin-bottom: 2px;width: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 10px;
   border: 1px solid rgb(229, 232, 235);
-  border-radius: 10px;
-}
-.accordionBtnNFt{
-      margin-bottom: 2px;
-      width: 100%;
-      -webkit-box-align: center;
-      align-items: center;
-      border-radius: 10px;
-      border-top: 1px solid rgb(229, 232, 235);
-      cursor: pointer;
-      display: flex;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 20px;
-      user-select: none;
-      background-color: rgb(255, 255, 255);
-}
-.itemDropNft{
-  border-radius: 10px;
-  border-right: 1px solid rgb(229, 232, 235) !important;
-  border-bottom: 1px solid rgb(229, 232, 235) !important;
-  border-left: 1px solid rgb(229, 232, 235) !important;
-  border-image: initial;
-  border-top: none;
-  color: rgb(4, 17, 29);
-  background-color: rgb(255, 255, 255);
-  overflow: hidden;
-}
-.bodyAccNft{
-      border-top: 1px solid rgb(229, 232, 235);
-      color: rgb(53, 56, 64);
-      background-color: rgb(251, 253, 255);
-}
-.bodydrop1AccNft{
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
   padding: 20px;
+  background-color: rgb(255, 255, 255);
+}
+.dropdownRowNft :hover{
+  color: black;
+  background-color: white;
+}
+.accordionHeading{
+  margin-bottom: 0;
+}
+.dropRow{
+  padding: 20px;
+  border-top: 1px solid rgb(229, 232, 235);
+  color: rgb(53, 56, 64);
+  background-color: rgb(251, 253, 255);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-.timeDropNFt{
+.dropTimeNft{
+  list-style-type: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.dropRowHeader{
   display: flex;
   flex-wrap: wrap;
 }
-.btnDropTimeNFt{
-  background-color: white;
-  color: black;
+.dropRowBody{
+  height: initial;
+  margin-bottom: 16px;
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  user-select: none;
 }
-.btnDropTimeNFt:hover{
-background-color: white;
-color: black;
+
+.fresContainer{
+      margin: 0px auto;
+      width: 80%;
+}
+.fresContainerRow{
+  display: flex;
+  column-gap: 160px;
+}
+.saleHeading{
+  font-weight: 600;
+  font-size: 24px;
+  color: rgb(4, 17, 29);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  line-height: 110%;
+}
+.chooseType{
+      margin-bottom: 24px;
+      flex-direction: column;
+}
+.typeHeading{
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+
+}
+.typeLabel{
+      color: rgb(53, 56, 64);
+      font-weight: 600;
+      font-size: 16px;
+}
+.typeLabeldiv{
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+      display: flex;
+}
+.infoIcon{
+  font-family: 'Material Icons Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  cursor: pointer;
+  color: rgb(112, 122, 131);
+  font-feature-settings: "liga" !important;
+  
+}
+.chooseBtn{
+width: 100%;
+display: flex;
+    height: 108px;
+}
+.fixedPriceBtn{
+color: rgb(4, 17, 29);
+opacity: 1;
+background-color: rgb(243, 251, 254);
+border-top-left-radius: 10px !important;
+border-bottom-left-radius: 10px !important;
+cursor: default;
+display: inline-flex;
+flex-direction: column;
+-webkit-box-align: center;
+align-items: center;
+border-radius: 10px;
+-webkit-box-pack: center;
+justify-content: center;
+font-size: 16px;
+font-weight: 600;
+padding: 12px 20px;
+background-color: rgb(255, 255, 255);
+border: 1px solid rgb(229, 232, 235);
+color: rgb(112, 122, 131);
+width: 100%;
+font: inherit;
+margin: 0px;
+border-top-right-radius: 0 !important;
+border-bottom-right-radius: 0 !important;
+}
+.timedAuctionBtn{
+        border-left: none !important;
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        border-radius: 0px;
+        display: inline-flex;
+        flex-direction: column;
+        -webkit-box-align: center;
+        align-items: center;
+        border-radius: 10px;
+        -webkit-box-pack: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 12px 20px;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(229, 232, 235);
+        color: rgb(112, 122, 131);
+        width: 100%;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+}
+.fixedBtnInner{
+  display: flex;
+      margin-bottom: 10px;
+      margin-left: 0px;
+      margin-right: 0px;
+}
+.dollarIcon{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+      text-rendering: optimizelegibility;
+      font-feature-settings: "liga" !important;
+      font-size: 24px !important;
+}
+.priceType{
+  margin-bottom: 24px;
+  flex-direction: column;
+  display: flex;
+}
+.priceTypeInner{
+  display: flex;
+  flex-direction: column;
+}
+.priceTypeHeading{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+}
+.priceTypeBody{
+      flex-direction: column;
+      display: flex;
+}
+.priceTypeBodyInnerdiv{
+  display: flex;
+  flex-direction: column;
+}
+.priceTypeInnerDiv{
+  display: flex;
+  column-gap: 8px;
+}
+.chooseMethPrice{
+  width: 250px !important;
+  font-size: inherit;
+  line-height: inherit;
+  min-height: inherit;
+        cursor: pointer;
+        display: flex;
+        border-radius: 10px;
+        border: 1px solid rgb(229, 232, 235);
+        width: 100%;
+        padding: 12px;
+        color: rgb(112, 122, 131);
+        background-color: rgba(229, 232, 235, 0.25);
+        pointer-events: none;
+}
+.chooseCurrencyPrice{
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: flex;
+  margin-right: 12px;
+  flex-direction: column;
+}
+.chooseCurrencyPriceInnerdiv{
+  overflow: hidden;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+      flex-direction: column;
+      display: flex;
+      width: 24px;
+      height: 24px;
+}
+.chooseCurrencyPriceInput{
+  font-size: inherit;
+  line-height: inherit;
+  min-height: inherit;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+      color: inherit;
+      font: inherit;
+      margin: 0px;
+}
+.enterAmountChoosePrice{
+  cursor: text;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid rgb(229, 232, 235);
+  width: 100%;
+  padding: 12px;
+}
+.enterAmountChoosePriceInput{
+  cursor: text;
+  font-size: inherit;
+  line-height: inherit;
+  min-height: inherit;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+      color: inherit;
+      font: inherit;
+      margin: 0px;
+}
+.imageEth{
+  object-fit: contain;
+  width: 24px;
+  height: 24px;
+}
+.durationType{
+  margin-bottom: 24px;
+  flex-direction: column;
+  display: flex;
+}
+.durationTypeInner{
+  display: flex;
+  flex-direction: column;
+}
+.durationTypeHeading{
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 8px;
+}
+.durationBtn{
+      font-weight: 500;
+      width: 100%;
+      display: inline-flex;
+      flex-direction: row;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 10px;
+      -webkit-box-pack: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 20px;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(229, 232, 235);
+      color: rgb(112, 122, 131);
+          text-align: left;
+}
+.durationBtnInner{
+      display: flex;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 12px;
+}
+.calenderIconDuration{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  text-rendering: optimizelegibility;
+  font-feature-settings: "liga" !important;
+  font-size: 24px !important;
+}
+.durationBtnInnerText{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rightCol{
+  display: flex;
+  flex-direction:column;
+  width: 50%;
+}
+.previewInnerCol{
+      padding-bottom: 16px;
+      width: 60%;
+      position: sticky;
+      top: calc(162px);
+}
+.previewHeading{
+      font-weight: 600;
+      font-size: 16px;
+      color: rgb(4, 17, 29);
+      margin-top: 40px;
+      line-height: 110%;
+}
+.previewImage{
+  margin-bottom: 24px;
+}
+.previewHeadingBody{
+  height: 10px;
+  width: auto;
+  position: relative;
+}
+.previewHeaddiff{
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      flex-direction: column;
+      display: flex;
+      width: 280px;
+      position: relative;
+      visibility: hidden;
+}
+.blankDivPreview{
+  position: absolute;
+  height: 20px;
+  border: 1px solid rgb(229, 232, 235);
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  width: 94%;
+  top: 0px;
+  z-index: 0;
+}
+.blanlDivPreview2{
+      position: absolute;
+      height: 20px;
+      border: 1px solid rgb(229, 232, 235);
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      width: 98%;
+      top: 5px;
+      z-index: 1;
+}
+.articleImgPreview{
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      min-width: 280px;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(229, 232, 235);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+}
+.articleInner{
+  height: 280px;
+  width: 280px;
+  position: relative;
+}
+.articleImgInner{
+  min-height: inherit;
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+}
+.imgArticleInner{
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  min-height: inherit;
+  width: 100%;
+  position: relative;
+  border-radius: inherit;
+}
+.imageTagPreview{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0px;
+}
+.collectionNamePreview{
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  height: 126px;
+}
+.collectionPreviewInner{
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  display: flex;
+  padding: 12px;
+}
+.collectionPreviewInnerDiv1{
+  max-width: 80%;
+}
+.collectionPreviewInnerDiv1Inner{
+  display: flex;
+}
+.collectionPreviewInnerDiv1InnerAnchor{
+  color: rgb(112, 122, 131);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.anchorText{
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: rgb(112, 122, 131);
+      font-size: 12px;
+}
+.collectionFooter{
+      font-size: 12px !important;
+      line-height: 18px;
+      letter-spacing: 0.1px;
+      color: rgb(53, 56, 64);
+      font-size: 2.93vw;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+}
+.collectionNftname{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.collectionPreviewInnerDiv2{
+  flex: 1 0 0%;
+  max-width: 50%;
+  align-items: flex-end;
+  flex-direction: column;
+  display: flex;
+}
+.priceTextCollectionPreview{
+  font-weight: 500;
+  font-size: 12px;
+  color: rgb(112, 122, 131);
+}
+.collectionEthereumSymbol{
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(4, 17, 29);
+}
+.spancollectionEthereumSymbol{
+  display: flex;
+  font-size: 14px;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(4, 17, 29);
+}
+.symbolEtherColl{
+  display: flex;
+  margin-right: 4px;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(4, 17, 29);
+}
+.symbolEther{
+overflow: hidden;
+-webkit-box-align: center;
+align-items: center;
+-webkit-box-pack: center;
+justify-content: center;
+flex-direction: column;
+display: flex;
+width: 16px;
+height: 16px
+}
+.imgEtherSymbol{
+  object-fit: contain;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(4, 17, 29);
+  font-family: Poppins,sans-serif;
+  line-height: 1.5;
+}
+.priceTag{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(4, 17, 29);
+}
+.imgParent{
+  margin-bottom: 24px;
+  flex-direction: column;
+  display: flex;
+}
+.imgChild{
+  display: flex;
+  flex-direction: column;
+}
+.divContainCreate{
+padding: 24px;
+margin: 0px auto;
+}
+.headerCreate{
+      flex-direction: column;
+      display: flex;
+}
+.formCreate{
+  margin-bottom: 32px;
+  max-width: 772px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.headingCreate{
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: 0px;
+  color: rgb(4, 17, 29);
+  margin-bottom: 16px;
+  line-height: 110%;
 }

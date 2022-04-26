@@ -4,29 +4,28 @@ import { Buffer } from "buffer";
 import axios from "axios";
 import { debounce } from "lodash";
 import { useCallback } from "react";
-import { errors } from "ethers";
+import { useLocation } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import Spinner from "./Spinner";
 function CreatePage(props) {
-  const [image, setImage] = useState({ preview: "", raw: "" });
-  const [name, setName] = useState("");
+  const { state } = useLocation();
+  var { nftImg, nftName, nftDescription, nftId } = state;
+  console.log(nftImg, nftName, nftDescription, nftId);
+  var [image, setImage] = useState({ preview: nftImg, raw: "" });
+  const [name, setName] = useState(nftName);
   const [externalLink, setExternalLink] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(nftDescription);
   var [dataHash, setDataHash] = useState("");
+  const [loading, setLoading] = useState(false);
   const [buffer, setBuffer] = useState(null);
   const Address = localStorage.getItem("address");
   const accessToken = localStorage.getItem("auth-token");
-  const [loading, setLoading] = useState(false);
   const apiUrl = "localhost:5000/v1/";
-  // to give permission globally
-  // axios.interceptors.request.use(
-  //   (config) => {
-  //     config.headers.authorization = `Bearer ${accessToken}`;
-  //     return config;
-  //   },
-  //   (error) => {
-  //     return Promise.reject(error);
-  //   }
-  // );
+  const client = create({
+    host: "ipfs.infura.io",
+    port: 5001,
+    protocol: "https",
+  });
   const authAxios = axios.create({
     baseURL: apiUrl,
     headers: {
@@ -34,45 +33,38 @@ function CreatePage(props) {
     },
   });
   const debName = useCallback(
-    debounce((name) => setName(name), 500),
+    debounce((name) => setName(name), 1000),
     []
   );
   const handleChangeName = (name) => {
     debName(name);
   };
   const debLink = useCallback(
-    debounce((link) => setExternalLink(link), 500),
+    debounce((link) => setExternalLink(link), 1000),
     []
   );
   const handleChangeLink = (link) => {
     debLink(link);
   };
   const debDescription = useCallback(
-    debounce((word) => setDescription(word), 500),
+    debounce((word) => setDescription(word), 1000),
     []
   );
   const handleChangeDescription = (word) => {
     debDescription(word);
   };
-  // var error = {};
-  const client = create({
-    host: "ipfs.infura.io",
-    port: 5001,
-    protocol: "https",
-  });
-  var createNft = async () => {
+  const updateNft = async () => {
     setLoading(true);
-    //uploading image
     const addedImg = await client.add(buffer);
     const imgHash = addedImg.path;
-    //making nft json object
-    var nft = {
-      nftName: name,
-      Description: description,
-      externalLink: externalLink,
+    const data = {
       img: "https://ipfs.io/ipfs/" + imgHash,
+      nftName: name,
+      description: description,
+      externalLink: externalLink,
     };
-    const NFt = JSON.stringify(nft);
+    console.log(nftId);
+    const NFt = JSON.stringify(data);
     //uploading Nft on ipfs
     const added = await client.add(NFt);
     const dataHash = added.path;
@@ -80,103 +72,94 @@ function CreatePage(props) {
     console.log("data hash", dataHash);
     const dataUrl = "https://ipfs.io/ipfs/" + dataHash;
     console.log("data url", dataUrl);
-    // console.log(externalLink);
+    console.log("update");
 
-    const data = {
-      nftName: name,
-      img: "https://ipfs.io/ipfs/" + imgHash,
-      description: description,
-      externalLink: externalLink,
-    };
-    console.log("data", data);
     authAxios
-      .post("http://localhost:5000/v1/nft", data)
+      .patch(`http://localhost:5000/v1/nft/${nftId}`, data)
       .then((result) => {
-        console.log("submit", result);
+        toast.success("Updated", {
+          position: "top-center",
+        });
+        console.log("data", result);
         setLoading(false);
-      })
-      .catch((err) => {
-        console.log("error", err);
       });
   };
-  //validating link
-  // const validate = () => {
-  //   console.log(externalLink);
-  //   const errors = {};
-  //   if (
-  //     externalLink.match(
-  //       /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
-  //     ) ||
-  //     externalLink === ""
-  //   ) {
-  //     errors.externalLink = "";
-  //   } else {
-  //     errors.externalLink = "not valid";
-  //   }
-  // };
+  const deleteNft = () => {
+    authAxios.delete(`http://localhost:5000/v1/nft/${nftId}`).then((result) => {
+      //console.log("data", data);
+      console.log(result);
+      toast.success("Deleted", {
+        position: "top-center",
+      });
+    });
+  };
+  // var error = {};
+
+  const imageRemove = () => {
+    console.log("remove");
+    setImage({
+      preview: null,
+    });
+  };
+
   const Call = () => {
     if (Address !== null) {
       return (
-        <section className=" createPageRow1">
-          <div className="divContainCreate">
-            <div className="headerCreate">
-              <h1
-                className={`text-${
-                  props.mode === "light" ? "black" : "white"
-                } headingCreate`}
-              >
-                Create New Item
-              </h1>
+        <>
+          <div className=" createPageRow1 my-2">
+            <div className="container">
+              <h1 className="my-4">Edit {nftName}</h1>
               {loading && <Spinner />}
-            </div>
-            <form action="" className="formCreate">
-              <div>
-                <div className="row createPageRow2 my-2">
-                  <h5>Image, Audio, Video, Or 3D Model</h5>
-                  <span className="spanText">
-                    File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3,
-                    WAV, OGG, GLB, GLTF. Max size: 100 MB
-                  </span>
-                </div>
-                <label htmlFor="upload-button" className="imageInputBox">
-                  {image.preview ? (
+              <div className="imgParent">
+                <div className="imgChild">
+                  <div className="row createPageRow2 my-2">
+                    <h5>Image, Audio, Video, Or 3D Model</h5>
+                    <span className="spanText">
+                      File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3,
+                      WAV, OGG, GLB, GLTF. Max size: 100 MB
+                    </span>
+                  </div>
+                  <label
+                    htmlFor="upload-button"
+                    id="label-image"
+                    className="imageInputBox"
+                  >
                     <img
                       src={image.preview}
                       alt="dummy"
                       width="340"
                       height="250"
                     />
-                  ) : (
-                    <>
-                      <span className="fa-stack fa-2x mt-3 mb-2">
-                        <i className="bi bi-images"></i>
-                      </span>
-                    </>
-                  )}
-                  <input
-                    type="file"
-                    id="upload-button"
-                    style={{ display: "none" }}
-                    onChange={async (e) => {
-                      e.preventDefault();
-                      if (e.target.files.length) {
-                        setImage({
-                          preview: URL.createObjectURL(e.target.files[0]),
-                          raw: e.target.files[0],
-                        });
-                        //converting image in buffer
-                        const reader = new window.FileReader();
-                        reader.readAsArrayBuffer(e.target.files[0]);
-                        reader.onloadend = () => {
-                          setBuffer(reader.result);
-                        };
-                        console.log(Buffer(setBuffer));
-                      }
-                    }}
-                  />
-                </label>
+                    <input
+                      type="file"
+                      id="upload-button"
+                      style={{ display: "none" }}
+                      onChange={async (e) => {
+                        e.preventDefault();
+                        if (e.target.files.length) {
+                          setImage({
+                            preview: URL.createObjectURL(e.target.files[0]),
+                            raw: e.target.files[0],
+                          });
+                          //converting image in buffer
+                          const reader = new window.FileReader();
+                          reader.readAsArrayBuffer(e.target.files[0]);
+                          reader.onloadend = () => {
+                            setBuffer(reader.result);
+                          };
+                          console.log(Buffer(setBuffer));
+                        }
+                      }}
+                    />
+                    <div className="crossIcon">
+                      <button className="crossIconBtn" onClick={imageRemove}>
+                        <i className="bi bi-x crossIconIcon"></i>
+                      </button>
+                    </div>
+                  </label>
+                </div>
               </div>
-              <div className="row createPageRow2 my-1">
+              <div className="row createPageRow2">
                 <label>Name</label>
                 <input
                   className=" my-2 createInputBox"
@@ -207,6 +190,7 @@ function CreatePage(props) {
                   }}
                 />
               </div>
+              {/* <p>{errstatus}</p> */}
               <div className="row createPageRow2 my-1">
                 <label>Description</label>
                 <span className="spanText">
@@ -261,10 +245,15 @@ function CreatePage(props) {
                   className="btn btn-primary mb-5 mt-3 mx-2 createButtonMint"
                   data-toggle="modal"
                   data-target="#exampleModal"
-                  onClick={createNft}
-                  disabled={!name || !image}
+                  onClick={updateNft}
                 >
-                  Create
+                  Save Changes
+                </button>
+                <button
+                  className="btn btn-primary mb-5 mt-3 mx-2 ml-auto createButtonMint"
+                  onClick={deleteNft}
+                >
+                  delete
                 </button>
                 <div
                   className="modal fade"
@@ -299,9 +288,9 @@ function CreatePage(props) {
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-        </section>
+        </>
       );
     } else if (Address === null) {
       return (

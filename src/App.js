@@ -11,6 +11,8 @@ import Explore from "./components/Explore";
 import FilteredPage from "./components/FilteredPage";
 import toast, { Toaster } from "react-hot-toast";
 import CreatePage from "./components/CreatePage";
+import EditNft from "./components/EditNft";
+import SellNft from "./components/SellNft";
 import axios from "axios";
 function App() {
   const [mode, setMode] = useState("light");
@@ -85,7 +87,12 @@ function App() {
           <Route path="/" element={<Body mode={mode} />}></Route>
           <Route
             path="/CreatePage"
-            element={<CreatePage mode={mode} />}
+            element={
+              <CreatePage
+                mode={mode}
+                connectWalletHandler={connectWalletHandler}
+              />
+            }
           ></Route>
           <Route
             path="/MintingPage"
@@ -101,7 +108,14 @@ function App() {
             }
           ></Route>
           <Route path="/Explore" element={<Explore mode={mode} />}></Route>
-          <Route path="/Nft" element={<Nft mode={mode} />}></Route>
+          <Route
+            path="/Nft"
+            element={
+              <Nft mode={mode} connectWalletHandler={connectWalletHandler} />
+            }
+          ></Route>
+          <Route path="/Edit" element={<EditNft mode={mode} />}></Route>
+          <Route path="/Sell" element={<SellNft mode={mode} />}></Route>
           <Route
             path="/FilteredPage"
             element={<FilteredPage mode={mode} />}

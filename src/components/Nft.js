@@ -1,31 +1,59 @@
 import React from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Nft = () => {
+const Nft = (props) => {
   const { state } = useLocation();
-  const { img, name } = state;
+  const { img, name, description, nftId } = state;
   console.log("data", img);
   console.log("name", name);
-  const [show, setShow] = useState("hide");
+  console.log("description", description, nftId);
+  const [isAboutCollectionActive, setIsAboutCollectionActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [isListingsActive, setIsListingsActive] = useState(false);
+  const [isOffersActive, setIsOffersActive] = useState(false);
+  const [isDescriptionActive, setIsDescriptionActive] = useState(false);
+  const [isDetailsActive, setIsDetailsActive] = useState(false);
+  const navigate = useNavigate();
+  const editFunc = () => {
+    navigate("/Edit", {
+      state: {
+        nftImg: img,
+        nftName: name,
+        nftDescription: description,
+        nftId: nftId,
+      },
+    });
+  };
+  const sellFunc = () => {
+    navigate("/Sell", {
+      state: {
+        img: img,
+        name: name,
+        description: description,
+        nftId: nftId,
+      },
+    });
+  };
+  console.log(img, name, description);
   return (
     <div>
       <div>
         <div className="row topRowNFt">
           <span>
-            <a href="" className="editNFt">
+            <a href="" className="editNFt" onClick={editFunc}>
               Edit
             </a>
           </span>
           <span>
-            <a href="" className="sellNFt">
+            <a href="" className="sellNFt" onClick={sellFunc}>
               Sell
             </a>
           </span>
         </div>
-        <div className="container itemContainer">
+        <div className="itemContainer mb-3">
           <div className="row">
-            <div className="summaryCol">
+            <div className="summaryCol my-3">
               <div className="articleNftImage">
                 <div className="row articleHead">
                   <span>
@@ -39,6 +67,124 @@ const Nft = () => {
                 <div className="row articleBody ">
                   <div className="imgDiv">
                     <img src={img} alt="" />
+                  </div>
+                </div>
+              </div>
+              <div className="my-4 mx-4">
+                <div className="accordion" id="accordionExample">
+                  <div className="accordion-item">
+                    <h2
+                      className="accordion-header accordionHeading"
+                      id="headingOne"
+                    >
+                      <button
+                        className="accordion-button dropBtnNFt"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                        onClick={() => {
+                          setIsDescriptionActive(!isDescriptionActive);
+                        }}
+                      >
+                        <i className="bi bi-list-nested mr-2"></i> Description
+                      </button>
+                    </h2>
+                    {isDescriptionActive && (
+                      <div
+                        id="collapseOne"
+                        className={`accordion-collapse collapse show`}
+                        aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div className="accordion-body">
+                          <div className="row dropRow">
+                            <div className="dropRowBody">
+                              <h3>Created By you</h3>
+                              <br />
+                              <h6>{description}</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="my-4 mx-4">
+                <div className="accordion" id="accordionExample">
+                  <div className="accordion-item">
+                    <h2
+                      className="accordion-header accordionHeading"
+                      id="headingOne"
+                    >
+                      <button
+                        className="accordion-button dropBtnNFt"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                        onClick={() => {
+                          setIsAboutCollectionActive(!isAboutCollectionActive);
+                        }}
+                      >
+                        <i className="bi bi-list mr-2"></i> About Collection
+                      </button>
+                    </h2>
+                    {isAboutCollectionActive && (
+                      <div
+                        id="collapseOne"
+                        className={`accordion-collapse collapse show`}
+                        aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div className="accordion-body">
+                          <div className="row dropRow">
+                            <div className="dropRowBody">No Items Yet</div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="mb-4 mx-4">
+                <div className="accordion" id="accordionExample">
+                  <div className="accordion-item">
+                    <h2
+                      className="accordion-header accordionHeading"
+                      id="headingOne"
+                    >
+                      <button
+                        className="accordion-button dropBtnNFt"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                        onClick={() => {
+                          setIsDetailsActive(!isDetailsActive);
+                        }}
+                      >
+                        <i className="bi bi-card-list mr-2"></i> Details
+                      </button>
+                    </h2>
+                    {isDetailsActive && (
+                      <div
+                        id="collapseOne"
+                        className={`accordion-collapse collapse show`}
+                        aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div className="accordion-body">
+                          <div className="row dropRow">
+                            <div className="dropRowBody">No Items Yet</div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -83,60 +229,176 @@ const Nft = () => {
                 </div>
               </section>
               <div className="itemFrameDrop">
-                <div className="accordion mx-3" id="accordionExample">
-                  <div className="accordion-item itemDropNft">
-                    <button
-                      className=" accordionBtnNFt"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                      onClick={() => {
-                        setShow("show");
-                      }}
-                    >
-                      Price History
-                    </button>
-                    <div
-                      id="collapseOne"
-                      className={`accordion-collapse collapse ${show}`}
-                      aria-labelledby="headingOne"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body bodyAccNft">
-                        <div className="bodydrop1AccNft">
-                          <div>
-                            <div className="timeDropNFt">
-                              <div className="dropdown">
-                                <button
-                                  className="btn btn-secondary dropdown-toggle btnDropTimeNFt"
-                                  type="button"
-                                  id="dropdownMenuButton"
-                                  data-toggle="dropdown"
-                                  aria-haspopup="true"
-                                  aria-expanded="false"
-                                >
-                                  Dropdown button
-                                </button>
-                                <div
-                                  className="dropdown-menu"
-                                  aria-labelledby="dropdownMenuButton"
-                                >
-                                  <a className="dropdown-item" href="#">
-                                    Action
-                                  </a>
-                                  <a className="dropdown-item" href="#">
-                                    Another action
-                                  </a>
-                                  <a className="dropdown-item" href="#">
-                                    Something else here
-                                  </a>
+                <div>
+                  <div className="accordion" id="accordionExample">
+                    <div className="accordion-item">
+                      <h2
+                        className="accordion-header accordionHeading"
+                        id="headingOne"
+                      >
+                        <button
+                          className="accordion-button dropBtnNFt"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseOne"
+                          aria-expanded="true"
+                          aria-controls="collapseOne"
+                          onClick={() => {
+                            setIsActive(!isActive);
+                          }}
+                        >
+                          <i className="bi bi-bezier2 mr-2"></i> Price History
+                        </button>
+                      </h2>
+                      {isActive && (
+                        <div
+                          id="collapseOne"
+                          className={`accordion-collapse collapse show `}
+                          aria-labelledby="headingOne"
+                          data-bs-parent="#accordionExample"
+                        >
+                          <div className="accordion-body">
+                            <div className="row dropRow">
+                              <div className="dropRowHeader">
+                                <div>
+                                  <li className="nav-item dropdown dropTimeNft">
+                                    <a
+                                      className={`nav-link text-${
+                                        props.mode === "dark" ? "light" : "dark"
+                                      } px-3 dropdown-toggle`}
+                                      to="/Explore"
+                                      data-toggle="dropdown"
+                                    >
+                                      All Time
+                                    </a>
+                                    <ul
+                                      className={`dropdown-menu bg-${
+                                        props.mode === "dark" ? "dark" : "light"
+                                      }`}
+                                    >
+                                      <li>
+                                        <a
+                                          className={`dropdown-item text-${
+                                            props.mode === "dark"
+                                              ? "light"
+                                              : "dark"
+                                          }`}
+                                          to="/"
+                                        >
+                                          All NFTs
+                                        </a>
+                                      </li>
+                                      <li className="dropdown-divider"></li>
+                                      <li>
+                                        <a
+                                          className={`dropdown-item text-${
+                                            props.mode === "dark"
+                                              ? "light"
+                                              : "dark"
+                                          }`}
+                                          to="/"
+                                        >
+                                          Art
+                                        </a>
+                                      </li>
+                                      <li className="dropdown-divider"></li>
+                                      <li>
+                                        <a
+                                          className={`dropdown-item text-${
+                                            props.mode === "dark"
+                                              ? "light"
+                                              : "dark"
+                                          }`}
+                                          to="/"
+                                        >
+                                          Collectibles
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </li>
                                 </div>
                               </div>
+                              <div className="dropRowBody">No Items Yet</div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="my-4">
+                  <div className="accordion" id="accordionExample">
+                    <div className="accordion-item">
+                      <h2
+                        className="accordion-header accordionHeading"
+                        id="headingOne"
+                      >
+                        <button
+                          className="accordion-button dropBtnNFt"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseOne"
+                          aria-expanded="true"
+                          aria-controls="collapseOne"
+                          onClick={() => {
+                            setIsListingsActive(!isListingsActive);
+                          }}
+                        >
+                          <i className="bi bi-tag-fill mr-2"></i> Listings
+                        </button>
+                      </h2>
+                      {isListingsActive && (
+                        <div
+                          id="collapseOne"
+                          className={`accordion-collapse collapse show`}
+                          aria-labelledby="headingOne"
+                          data-bs-parent="#accordionExample"
+                        >
+                          <div className="accordion-body">
+                            <div className="row dropRow">
+                              <div className="dropRowBody">No Items Yet</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="my-4">
+                  <div className="accordion" id="accordionExample">
+                    <div className="accordion-item">
+                      <h2
+                        className="accordion-header accordionHeading"
+                        id="headingOne"
+                      >
+                        <button
+                          className="accordion-button dropBtnNFt"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseOne"
+                          aria-expanded="true"
+                          aria-controls="collapseOne"
+                          onClick={() => {
+                            setIsOffersActive(!isOffersActive);
+                          }}
+                        >
+                          <i className="bi bi-list-ul mr-2"></i> Offers
+                        </button>
+                      </h2>
+                      {isOffersActive && (
+                        <div
+                          id="collapseOne"
+                          className={`accordion-collapse collapse show`}
+                          aria-labelledby="headingOne"
+                          data-bs-parent="#accordionExample"
+                        >
+                          <div className="accordion-body">
+                            <div className="row dropRow">
+                              <div className="dropRowBody">No Items Yet</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
